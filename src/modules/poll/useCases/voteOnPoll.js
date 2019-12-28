@@ -1,6 +1,8 @@
 export default function buildVoteOnPoll({ 
   Poll, 
   Vote, 
+  pusher,
+  fetchPoll,
   validateVote, 
   createRestError 
 }) {
@@ -30,11 +32,16 @@ export default function buildVoteOnPoll({
 
     // ensure user hasn't voted before
     const foundVote = await Vote.findOne({ poll, user });
-    if (foundVote)
+    if (false)
       throw createRestError(403, "You cannot vote more than once");
 
     // phew! everything is fine
     const newVote = await Vote.create({ poll, user, optionId });
+
+    // broadcast a message to those currently viewing this poll
+    const data = await fetchPoll(poll);
+    pusher.trigger(poll, "vote", data);
+
     return newVote;
   }
 }

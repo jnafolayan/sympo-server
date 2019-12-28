@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import joi from "joi";
 import getDBEnv from "./db";
 import getServerEnv from "./server";
+import getJWTEnv from "./jwt";
+import getPusherEnv from "./pusher";
 
 // load the correct environment
 const envFile = (() => {
@@ -30,5 +32,7 @@ dotenv.config();
 const env = process.env;
 const db = getDBEnv({ joi, env });
 const server = getServerEnv({ joi, env });
+const jwt = getJWTEnv({ joi, env });
+const pusher = getPusherEnv({ joi, env });
 
-export { db, server };
+export { db, server, jwt, pusher };

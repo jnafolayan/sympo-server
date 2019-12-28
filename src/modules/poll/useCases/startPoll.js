@@ -1,6 +1,7 @@
 export default function buildStartPoll({ 
   Poll, 
   Vote, 
+  pusher,
   validatePoll, 
   createRestError 
 }) {
@@ -20,6 +21,14 @@ export default function buildStartPoll({
       details: details || "", 
       options: newOptions 
     });
+
+    // notify everyone
+    pusher.trigger("polls", "poll", {
+      question,
+      _id: newPoll.id,newPoll,
+      details: newPoll.details
+    });
+    
     return newPoll;
   }
 }

@@ -6,7 +6,9 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import logger from "./config/winston";
 import userModule from "./modules/user";
+import authModule from "./modules/auth";
 import pollModule from "./modules/poll";
+import { verifyAuthController } from "./modules/auth/controllers";
 
 const app = express();
 
@@ -21,7 +23,16 @@ if (process.env.NODE_ENV != "staging")
   app.use(morgan("combined", { stream: logger.stream }));
 
 const apiRouter = express.Router();
-apiRouter.use("/users", userModule(express.Router()));
+
+apiRouter.post("/token", verifyAuthController, (req, res) => {
+  res.status(200).json({
+    message: "Token valid"
+  });
+});
+
+// user module should not be exposed publicly
+// apiRouter.use("/users", userModule(express.Router()));
+apiRouter.use("/auth", authModule(express.Router()));
 apiRouter.use("/polls", pollModule(express.Router()));
 
 app.use("/api/v1", apiRouter);

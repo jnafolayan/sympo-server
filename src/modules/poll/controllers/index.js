@@ -1,8 +1,12 @@
-import { startPoll } from "../useCases";
+import { startPoll, voteOnPoll, fetchPoll, fetchAllPolls } from "../useCases";
 import buildStartPollController from "./startPollController";
 import buildVoteOnPollController from "./voteOnPollController";
+import buildFetchPollController from "./fetchPollController";
+import buildFetchAllPollsController from "./fetchAllPollsController";
 
 const startPollController = buildStartPollController({ startPoll });
-const voteOnPollController = buildVoteOnPollController({ startPoll });
+const voteOnPollController = buildVoteOnPollController({ voteOnPoll });
+const fetchPollController = buildFetchPollController({ fetchPoll });
+const fetchAllPollsController = buildFetchAllPollsController({ fetchAllPolls });
 
-export { startPollController, voteOnPollController };
+export { startPollController, voteOnPollController, fetchPollController, fetchAllPollsController };

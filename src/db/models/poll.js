@@ -1,10 +1,5 @@
 export default function buildPollModel({ mongoose, Schema, uuid }) {
-  const PollOption = new Schema({
-    _id: {
-      type: String,
-      default: () => uuid.uuid(),
-    },
-
+  const optionSchema = new Schema({
     label: {
       type: String,
       required: true
@@ -17,11 +12,10 @@ export default function buildPollModel({ mongoose, Schema, uuid }) {
       required: true
     },
     details: {
-      type: String,
-      required: true
+      type: String
     },
-    options: [PollOption]
-  });
+    options: [optionSchema]
+  }, { timestamps: true });
 
   return mongoose.model("Poll", pollSchema, "polls");
 }

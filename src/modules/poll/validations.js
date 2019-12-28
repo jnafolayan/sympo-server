@@ -5,9 +5,8 @@ const wrapValidator = (schema) => (obj) => joi.validate(obj, schema);
 export const validatePoll = wrapValidator(
   joi.object({
     question: joi.string().required(),
-    details: joi.string(),
     options: joi.array().required()
-  }).required()
+  }).unknown()
 );
 
 export const validateVote = wrapValidator(

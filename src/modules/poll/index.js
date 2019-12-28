@@ -1,10 +1,15 @@
+import { verifyAuthController } from "../auth/controllers";
 import { 
   startPollController, 
-  voteOnPollController 
+  voteOnPollController,
+  fetchPollController,
+  fetchAllPollsController
 } from "./controllers";
 
 export default function loadPollModule(router) {
   router.post("/", startPollController);
-  router.post("/:pollId/vote", voteOnPollController);
+  router.get("/", fetchAllPollsController);
+  router.get("/:pollId", fetchPollController);
+  router.post("/:pollId/vote", verifyAuthController, voteOnPollController);
   return router;
 }
