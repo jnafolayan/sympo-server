@@ -6,5 +6,37 @@
   "repository": "https://github.com/jnafolayan/sympo-server",
   "author": "John Afolayan <jnafolayan@gmail.com>",
   "license": "Apache-2.0",
-  "private": false
+  "private": false,
+  "scripts": {
+    "test": "cross-env NODE_ENV=staging mocha tests/modules/*.js -t 0 --require @babel/register",
+    "build": "babel src -d build",
+    "start": "cross-env NODE_ENV=production node dist/bin/www.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/bin/www.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "joi": "^14.3.1",
+    "mongoose": "^5.7.13",
+    "morgan": "^1.9.1",
+    "swagger-ui-express": "^4.1.2",
+    "uuidv4": "^6.0.0",
+    "winston": "^3.2.1"
+  }
 }
