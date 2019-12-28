@@ -5,6 +5,7 @@ import compression from "compression";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import logger from "./config/winston";
+import userModule from "./modules/user";
 
 const app = express();
 
@@ -17,6 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV != "staging")
   app.use(morgan("combined", { stream: logger.stream }));
+
+const apiRouter = express.Router();
+apiRouter.use("/users", userModule(express.Router()));
+
+app.use("/api/v1", apiRouter);
 
 app.use((error, req, res, next) => {
   const statusCode = error.statusCode || 500;

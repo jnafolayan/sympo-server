@@ -9,6 +9,6 @@ const server = http.createServer(app);
   await loadDB(config.db);
 
   server.listen(config.server.port, () => {
-    console.log(`Sympo is up and running!`);
+    console.log(`Sympo is up and running at port ${config.server.port}!`);
   });
 })();
