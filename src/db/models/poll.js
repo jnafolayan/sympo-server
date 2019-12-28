@@ -1,6 +1,10 @@
 export default function buildPollModel({ mongoose, Schema, uuid }) {
   const PollOption = new Schema({
-    // TODO: check if _id is attached on instance
+    _id: {
+      type: String,
+      default: () => uuid.uuid(),
+    },
+
     label: {
       type: String,
       required: true
@@ -8,10 +12,6 @@ export default function buildPollModel({ mongoose, Schema, uuid }) {
   });
 
   const pollSchema = new Schema({
-    uuid: {
-      type: String,
-      default: uuid
-    },
     question: {
       type: String,
       required: true

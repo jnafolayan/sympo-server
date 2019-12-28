@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import logger from "./config/winston";
 import userModule from "./modules/user";
+import pollModule from "./modules/poll";
 
 const app = express();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV != "staging")
 
 const apiRouter = express.Router();
 apiRouter.use("/users", userModule(express.Router()));
+apiRouter.use("/polls", pollModule(express.Router()));
 
 app.use("/api/v1", apiRouter);
 

@@ -1,16 +1,17 @@
 export default function buildVoteModel({ mongoose, Schema, uuid }) {
   const voteSchema = new Schema({
-    pollId: {
+    poll: {
       type: Schema.Types.ObjectId,
       ref: "Poll",
       required: true
     },
-    username: {
-      type: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true
     },
-    option: {
-      type: String, // option _id or id??
+    optionId: {
+      type: String, // option _id
       required: true
     }
   });
