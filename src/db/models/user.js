@@ -1,9 +1,5 @@
 export default function buildUserModel({ mongoose, Schema, uuid }) {
   const userSchema = new Schema({
-    id: {
-      type: String,
-      default: uuid
-    },
     username: {
       type: String,
       required: true,
