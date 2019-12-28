@@ -1,0 +1,10 @@
+{
+  "name": "sympo-server",
+  "version": "1.0.0",
+  "description": "Server codebase for Sympo",
+  "main": "build/www/bin.js",
+  "repository": "https://github.com/jnafolayan/sympo-server",
+  "author": "John Afolayan <jnafolayan@gmail.com>",
+  "license": "Apache-2.0",
+  "private": false
+}
