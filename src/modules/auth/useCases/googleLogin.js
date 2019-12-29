@@ -1,6 +1,6 @@
 export default function buildGoogleLogin({ 
-  initGoogleAuth
-  getGoogleAuthUrl, 
+  initGoogleAuth,
+  getGoogleAuthUrl 
 }) {
   /**
    * Generates a google login url for the client
