@@ -28,7 +28,7 @@ export default function buildVoteOnPoll({
     // check if option chosen is in Poll
     const foundOption = pollDoc.options.find(option => option._id == optionId);
     if (!foundOption)
-      throw createRestError(404, "Attempting to vote an illegal option")
+      throw createRestError(422, "Attempting to vote an illegal option")
 
     // ensure user hasn't voted before
     const foundVote = await Vote.findOne({ poll, user });

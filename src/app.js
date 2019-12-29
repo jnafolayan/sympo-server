@@ -8,6 +8,7 @@ import logger from "./config/winston";
 import userModule from "./modules/user";
 import authModule from "./modules/auth";
 import pollModule from "./modules/poll";
+import commentModule from "./modules/comment";
 import { verifyAuthController } from "./modules/auth/controllers";
 
 const app = express();
@@ -34,6 +35,7 @@ apiRouter.post("/token", verifyAuthController, (req, res) => {
 // apiRouter.use("/users", userModule(express.Router()));
 apiRouter.use("/auth", authModule(express.Router()));
 apiRouter.use("/polls", pollModule(express.Router()));
+apiRouter.use("/comments", commentModule(express.Router()));
 
 app.use("/api/v1", apiRouter);
 
