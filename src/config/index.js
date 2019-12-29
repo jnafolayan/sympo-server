@@ -21,10 +21,14 @@ const envFile = (() => {
 })();
 
 if (envFile) {
-  const inFile = path.resolve(__dirname, "../../", envFile);
-  const outFile = path.resolve(__dirname, "../../", ".env");
-  const content = fs.readFileSync(inFile, "utf-8");
-  fs.writeFileSync(outFile, content);
+  try {
+    const inFile = path.resolve(__dirname, "../../", envFile);
+    const outFile = path.resolve(__dirname, "../../", ".env");
+    const content = fs.readFileSync(inFile, "utf-8");
+    fs.writeFileSync(outFile, content);
+  } catch (err) {
+    console.log("Could not load env file");
+  }
 }
 
 dotenv.config();
