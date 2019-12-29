@@ -32,7 +32,7 @@ export default function buildVoteOnPoll({
 
     // ensure user hasn't voted before
     const foundVote = await Vote.findOne({ poll, user });
-    if (false)
+    if (foundVote)
       throw createRestError(403, "You cannot vote more than once");
 
     // phew! everything is fine
