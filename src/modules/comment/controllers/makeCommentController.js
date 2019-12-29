@@ -2,11 +2,11 @@ export default function buildMakeCommentController({ makeComment }) {
   return async function makeCommentController(req, res, next) {
     const author = req.user.id;
     const message = req.body.message;
-    const pollId = req.body.pollId;
-    const dto = { author, message, pollId };
+    const poll = req.body.poll;
+    const dto = { author, message, poll };
 
     try {
-      const comment = await makeComment(dto);
+      const comment = await makeComment(dto, req.user.username);
       res.status(201).json({
         data: comment
       });

@@ -29,10 +29,8 @@ export default function buildUpvoteComment({
     // make an entry
     await Upvote.create({ voter, comment });
 
-    console.log("poll type: ", typeof commentDoc.poll);
-
     // notify everyone of the upvote
-    pusher.trigger(commentDoc.poll, "upvote", {
+    pusher.trigger(commentDoc.poll.toString(), "upvote", {
       commentId: comment, 
       upvotes: commentDoc.upvotes
     });

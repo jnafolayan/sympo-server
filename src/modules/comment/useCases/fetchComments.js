@@ -8,7 +8,17 @@ export default function buildFetchComments({
         out[key] = query[key];
       return out;
     }, {});
-    const comments = await Comment.find(query).sort("createdAt").exec();
-    return comments;
+    const comments = await Comment
+      .find(query)
+      .populate("author")
+      .sort("-upvotes").exec();
+    return comments.map(comment => ({
+      _id: comment._id,
+      author: comment.author.username,
+      message: comment.message,
+      poll: comment.poll,
+      upvotes: comment.upvotes,
+      createdAt: comment.createdAt
+    }));
   }
 }
