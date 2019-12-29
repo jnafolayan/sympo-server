@@ -9,8 +9,8 @@
   "private": false,
   "scripts": {
     "test": "cross-env NODE_ENV=staging mocha tests/modules/*.js -t 0 --require @babel/register",
-    "build": "babel src -d build",
-    "start": "cross-env NODE_ENV=production node build/bin/www.js",
+    "build": "rm -rf build && babel src --out-dir build",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/bin/www.js"
   },
   "devDependencies": {
@@ -36,6 +36,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.13",
     "morgan": "^1.9.1",
+    "pm2": "^4.2.1",
     "pusher": "^3.0.0",
     "swagger-ui-express": "^4.1.2",
     "uuidv4": "^6.0.0",
