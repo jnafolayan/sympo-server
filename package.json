@@ -10,7 +10,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=staging mocha tests/modules/*.js -t 0 --require @babel/register",
     "build": "babel src -d build",
-    "start": "cross-env NODE_ENV=production node dist/bin/www.js",
+    "start": "cross-env NODE_ENV=production node build/bin/www.js",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/bin/www.js"
   },
   "devDependencies": {
