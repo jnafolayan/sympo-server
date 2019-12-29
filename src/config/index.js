@@ -27,7 +27,7 @@ if (envFile) {
     const content = fs.readFileSync(inFile, "utf-8");
     fs.writeFileSync(outFile, content);
   } catch (err) {
-    console.log("Could not load environment");
+    console.log("Could not load environment " + envFile);
     process.exit(0);
   }
 }
