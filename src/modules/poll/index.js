@@ -7,7 +7,7 @@ import {
 } from "./controllers";
 
 export default function loadPollModule(router) {
-  router.post("/", startPollController);
+  router.post("/", verifyAuthController, startPollController);
   router.get("/", fetchAllPollsController);
   router.get("/:pollId", fetchPollController);
   router.post("/:pollId/vote", verifyAuthController, voteOnPollController);
